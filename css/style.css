@@ -8,5 +8,33 @@
 /* Font */
 
 /* Regole Generali */
+.none {
+    display: none;
+}
+
+body {
+    background-color: brown;
+    position: relative;
+}
+
+/* Header */
+
+
 
 /* Main */
+#container {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+#container .cell {
+    width: 10rem;
+    height: 10rem;
+    background-color: blue;
+    text-align: center;
+    line-height: 10rem;
+    font-size: 8rem;
+}
