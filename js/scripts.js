@@ -1,114 +1,175 @@
-// contenitore celle
-const mainContainer = document.getElementById('container')
+// play game
+const myButton = document.getElementById('play-game');
 
-// contenitore span
+// overlay
+const myOverlay = document.getElementById('overlay');
+
+// end game container
+const endGame = document.getElementById('end-game');
+
+// numeri inseriti 
+const yourNumber = document.getElementById('your-num');
+
+// numeri generati
+const generateNumber = document.getElementById('random-num');
+
+// array span
 let myElements = [];
 
 // contenitore numeri generati
 let myNumbers = [];
 
-// creazione celle
-for (let i = 0; i < 5; i++) {
+// verifica bottone
+let verifyButton = 0;
 
-    let myCell = document.createElement('div');
+myButton.addEventListener('click',
 
-    myCell.classList.add('cell');
+    () => {
 
-    mainContainer.append(myCell);
+        verifyButton++;
 
-    let myElement = document.createElement('span');
+        if (verifyButton == 1) {
 
-    myElements.push(myElement);
+            // contenitore celle
+            const mainContainer = document.getElementById('container');
 
-    myCell.append(myElement);
+            // testo intro
+            const intro = document.getElementById('intro');
 
-    let myRandomNumber = randomNumber(1, 99);
+            intro.classList.add('none');
 
-    console.log(myRandomNumber);
+            // creazione celle
+            for (let i = 0; i < 5; i++) {
 
-    myElement.append(myRandomNumber);
+                let myCell = document.createElement('div');
 
-    myNumbers.push(myRandomNumber);
+                myCell.classList.add('cell');
 
-};
+                mainContainer.append(myCell);
 
-console.log(myNumbers);
+                let myElement = document.createElement('span');
 
+                myElements.push(myElement);
 
-let counter = 3;
+                myCell.append(myElement);
 
-const myInterval = setInterval(function () {
+                let myRandomNumber = randomNumber(1, 99);
 
-    if (counter == 0) {
+                myElement.append(myRandomNumber);
 
-        clearInterval(myInterval);
+                myNumbers.push(myRandomNumber);
 
-        for (let i = 0; i < myElements.length; i++) {
+            };
 
-            myElements[i].classList.add('none');
-        
-        };
+            // Contatore
+            let counter = 30;
 
-        setTimeout(function () {
+            const myInterval = setInterval(function () {
 
-            let solution1 = parseInt(prompt('Inserisci il Primo Numero'));
+                if (counter == 0) {
 
-            let solution2 = parseInt(prompt('Inserisci il Secondo Numero'));
+                    clearInterval(myInterval);
 
-            let solution3 = parseInt(prompt('Inserisci il Terzo Numero'));
+                    for (let i = 0; i < myElements.length; i++) {
 
-            let solution4 = parseInt(prompt('Inserisci il Quarto Numero'));
+                        myElements[i].classList.add('none');
+                    
+                    };
 
-            let solution5 = parseInt(prompt('Inserisci il Quinto Numero'));
+                    setTimeout(function () {
 
-            if (solution1 == myNumbers[0] 
-                && 
-                solution2 == myNumbers[1] 
-                && 
-                solution3 == myNumbers[2] 
-                && 
-                solution4 == myNumbers[3] 
-                && 
-                solution5 == myNumbers[4]) {
+                        let solution1 = parseInt(prompt('Inserisci il Primo Numero'));
 
-                alert('Hai vinto!');
+                        let solution2 = parseInt(prompt('Inserisci il Secondo Numero'));
 
-                console.log('Numeri da individuare:', myNumbers, 
-                'Tuoi Numeri:', 
-                solution1, 
-                solution2, 
-                solution3, 
-                solution4, 
-                solution5);
+                        let solution3 = parseInt(prompt('Inserisci il Terzo Numero'));
 
-            } else {
+                        let solution4 = parseInt(prompt('Inserisci il Quarto Numero'));
 
-                alert('Hai perso!');
+                        let solution5 = parseInt(prompt('Inserisci il Quinto Numero'));
 
-                console.log('Numeri da individuare:', myNumbers, 
-                'Tuoi Numeri:', 
-                solution1, 
-                solution2, 
-                solution3, 
-                solution4, 
-                solution5)
+                        if (solution1 == myNumbers[0] 
+                            && 
+                            solution2 == myNumbers[1] 
+                            && 
+                            solution3 == myNumbers[2] 
+                            && 
+                            solution4 == myNumbers[3] 
+                            && 
+                            solution5 == myNumbers[4]) {
 
-            }
+                            myOverlay.classList.remove('none');
 
-        }, 1);
-    
+                            myOverlay.classList.add('block');
+
+                            endGame.classList.remove('none');
+
+                            endGame.classList.add('flex');
+
+                            const lose = document.getElementById('lose');
+
+                            lose.classList.add('none');
+
+                            yourNumber.innerHTML = solution1 + " " + solution2 + " " + solution3 + " " + solution4 + " " + solution5;
+
+                            generateNumber.innerHTML = myNumbers[0] + " " + myNumbers[1] + " " + myNumbers[2] + " " + myNumbers[3] + " " + myNumbers[4];
+
+                        } else {
+
+                            myOverlay.classList.remove('none');
+
+                            myOverlay.classList.add('block');
+
+                            endGame.classList.remove('none');
+
+                            endGame.classList.add('flex');
+
+                            const win = document.getElementById('win');
+
+                            win.classList.add('none');
+
+                            yourNumber.innerHTML = solution1 + " " + solution2 + " " + solution3 + " " + solution4 + " " + solution5;
+
+                            generateNumber.innerHTML = myNumbers[0] + " " + myNumbers[1] + " " + myNumbers[2] + " " + myNumbers[3] + " " + myNumbers[4];
+
+                        }
+
+                    }, 1);
+                
+                }
+
+                else {
+
+                    counter--;
+
+                    // timer
+                    const myTimer = document.getElementById('my-timer');
+
+                    myTimer.innerHTML = counter;
+                
+                }
+                
+
+            }, 1000);
+
+        }
+
     }
 
-    else {
-    
-        console.log('Countdown:', counter);
-    
-        counter--;
-    
-    }
-    
+);
 
-}, 1000);
+//gioca ancora
+const playAgain = document.getElementById('play-again');
+
+playAgain.addEventListener('click',
+
+    () => {
+
+        location.reload();
+
+    }
+
+)
 
 //funzione random number
 function randomNumber (min ,max) {

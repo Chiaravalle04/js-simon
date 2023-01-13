@@ -6,7 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <!--Fonts-->
-
+        <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap" rel="stylesheet">
+        
         <!--Fontawesome-->
 
         <!--Style CSS-->
@@ -19,25 +21,51 @@
 
         <header> <!--Inizio Header-->
 
-            <!-- <h1>Simon Says</h1> -->
+            <h1>Simon Says</h1>
+
+            <button type="button" id="play-game">PLAY</button>
 
         </header> <!--Fine Header-->
 
         <main> <!--Inizio Main-->
 
+            <div class="timer">
+
+                <div id="my-timer">
+
+                    30
+
+                </div>
+
+            </div>
+
             <div id="container">
 
-
+                <p id="intro">Clicca "Play" per giocare, hai 30 secondi di tempo per memorizzare i numeri presenti nelle caselle!</p>
 
             </div>
 
         </main> <!--Fine Main-->
 
-        <footer> <!--Inizio Footer-->
+        <div id="end-game" class="none">
 
+            <p id="win">HAI VINTO!</p>
 
+            <p id="lose">HAI PERSO!</p>
 
-        </footer> <!--Fine Footer-->
+            <p id="your-number">I tuoi numeri:</p>
+
+            <p id="your-num"></p>
+
+            <p id="random-number">Numeri corretti:</p>
+
+            <p id="random-num"></p>
+
+            <button type="button" id="play-again">Gioca Ancora</button>
+
+        </div>
+
+        <div id="overlay" class="overlay none"></div>
 
         <script text="text/javascript" src="js/scripts.js"></script>
 
